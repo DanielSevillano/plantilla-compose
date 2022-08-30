@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -36,11 +37,6 @@ class MainActivity : ComponentActivity() {
                 val dimensionesVentana = calculateWindowSizeClass(this)
 
                 Scaffold(
-                    topBar = {
-                        CenterAlignedTopAppBar(
-                            title = { Text(text = destinoActual?.route.toString()) }
-                        )
-                    },
                     bottomBar = {
                         if (dimensionesVentana.widthSizeClass == WindowWidthSizeClass.Compact) {
                             NavigationBar {
@@ -62,11 +58,11 @@ class MainActivity : ComponentActivity() {
                                         icon = {
                                             Icon(
                                                 imageVector = if (destinoSeleccionado) destino.iconoSeleccionado else destino.icono,
-                                                contentDescription = destino.ruta
+                                                contentDescription = stringResource(id = destino.nombreId)
                                             )
                                         },
                                         label = {
-                                            Text(text = destino.ruta)
+                                            Text(text = stringResource(id = destino.nombreId))
                                         }
                                     )
                                 }
@@ -104,28 +100,28 @@ fun Navegacion(navController: NavHostController) {
         navController = navController,
         startDestination = destinos.first().ruta
     ) {
-        composable("Destino 1") {
+        composable("destino1") {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "Contenido 1")
+                Text(text = "Destino 1")
             }
         }
-        composable("Destino 2") {
+        composable("destino2") {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "Contenido 2")
+                Text(text = "Destino 2")
             }
         }
-        composable("Destino 3") {
+        composable("destino3") {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "Contenido 3")
+                Text(text = "Destino 3")
             }
         }
     }
@@ -138,13 +134,13 @@ fun PantallaExpandida(navController: NavHostController, destinoActual: NavDestin
         PermanentDrawerSheet(modifier = Modifier.padding(horizontal = 12.dp)) {
             Spacer(modifier = Modifier.height(8.dp))
 
-            destinos.forEach { seccion ->
+            destinos.forEach { destino ->
                 val seleccionado =
-                    destinoActual?.hierarchy?.any { it.route == seccion.ruta } == true
+                    destinoActual?.hierarchy?.any { it.route == destino.ruta } == true
                 NavigationDrawerItem(
                     selected = seleccionado,
                     onClick = {
-                        navController.navigate(seccion.ruta) {
+                        navController.navigate(destino.ruta) {
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
                             }
@@ -154,14 +150,13 @@ fun PantallaExpandida(navController: NavHostController, destinoActual: NavDestin
                     },
                     icon = {
                         Icon(
-                            imageVector = if (seleccionado) seccion.iconoSeleccionado else seccion.icono,
-                            contentDescription = seccion.ruta,
-                            tint = MaterialTheme.colorScheme.onBackground
+                            imageVector = if (seleccionado) destino.iconoSeleccionado else destino.icono,
+                            contentDescription = stringResource(id = destino.nombreId)
                         )
                     },
                     label = {
                         Text(
-                            text = seccion.ruta
+                            text = stringResource(id = destino.nombreId)
                         )
                     }
                 )
@@ -178,13 +173,13 @@ fun PantallaMediana(navController: NavHostController, destinoActual: NavDestinat
         NavigationRail(modifier = Modifier.padding(top = 4.dp)) {
             Spacer(Modifier.weight(1f))
 
-            destinos.forEach { seccion ->
+            destinos.forEach { destino ->
                 val seleccionado =
-                    destinoActual?.hierarchy?.any { it.route == seccion.ruta } == true
+                    destinoActual?.hierarchy?.any { it.route == destino.ruta } == true
                 NavigationRailItem(
                     selected = seleccionado,
                     onClick = {
-                        navController.navigate(seccion.ruta) {
+                        navController.navigate(destino.ruta) {
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
                             }
@@ -194,14 +189,13 @@ fun PantallaMediana(navController: NavHostController, destinoActual: NavDestinat
                     },
                     icon = {
                         Icon(
-                            imageVector = if (seleccionado) seccion.iconoSeleccionado else seccion.icono,
-                            contentDescription = seccion.ruta,
-                            tint = MaterialTheme.colorScheme.onBackground
+                            imageVector = if (seleccionado) destino.iconoSeleccionado else destino.icono,
+                            contentDescription = stringResource(id = destino.nombreId)
                         )
                     },
                     label = {
                         Text(
-                            text = seccion.ruta
+                            text = stringResource(id = destino.nombreId)
                         )
                     }
                 )
