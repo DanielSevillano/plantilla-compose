@@ -23,7 +23,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.daniel.plantillacompose.ui.theme.AppTheme
-import com.daniel.plantillacompose.ui.theme.destinos
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3WindowSizeClassApi::class)
@@ -40,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     bottomBar = {
                         if (dimensionesVentana.widthSizeClass == WindowWidthSizeClass.Compact) {
                             NavigationBar {
-                                destinos.forEach { destino ->
+                                Destino.values().forEach { destino ->
                                     val destinoSeleccionado =
                                         destinoActual?.hierarchy?.any { it.route == destino.ruta } == true
 
@@ -98,30 +97,16 @@ class MainActivity : ComponentActivity() {
 fun Navegacion(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = destinos.first().ruta
+        startDestination = Destino.values().first().ruta
     ) {
-        composable("destino1") {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Destino 1")
-            }
-        }
-        composable("destino2") {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Destino 2")
-            }
-        }
-        composable("destino3") {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Destino 3")
+        Destino.values().forEach { destino ->
+            composable(destino.ruta) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = stringResource(id = destino.nombreId))
+                }
             }
         }
     }
@@ -134,7 +119,7 @@ fun PantallaExpandida(navController: NavHostController, destinoActual: NavDestin
         PermanentDrawerSheet(modifier = Modifier.padding(horizontal = 12.dp)) {
             Spacer(modifier = Modifier.height(8.dp))
 
-            destinos.forEach { destino ->
+            Destino.values().forEach { destino ->
                 val seleccionado =
                     destinoActual?.hierarchy?.any { it.route == destino.ruta } == true
                 NavigationDrawerItem(
@@ -173,7 +158,7 @@ fun PantallaMediana(navController: NavHostController, destinoActual: NavDestinat
         NavigationRail(modifier = Modifier.padding(top = 4.dp)) {
             Spacer(Modifier.weight(1f))
 
-            destinos.forEach { destino ->
+            Destino.values().forEach { destino ->
                 val seleccionado =
                     destinoActual?.hierarchy?.any { it.route == destino.ruta } == true
                 NavigationRailItem(
