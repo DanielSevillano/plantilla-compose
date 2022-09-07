@@ -101,7 +101,7 @@ fun AppTheme(
         )
 
         systemUiController.setNavigationBarColor(
-            color = colors.surfaceColorAtElevation(2.dp),
+            color = colors.surfaceColorAtElevation(3.dp),
             darkIcons = !useDarkTheme
         )
     }

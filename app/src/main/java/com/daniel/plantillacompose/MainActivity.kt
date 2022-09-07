@@ -10,6 +10,7 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -35,7 +36,9 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val destinoActual = navBackStackEntry?.destination
+                val destinoActual = remember(navBackStackEntry) {
+                    navBackStackEntry?.destination
+                }
                 val dimensionesVentana = calculateWindowSizeClass(this)
 
                 Scaffold(
@@ -158,7 +161,7 @@ fun PantallaExpandida(navController: NavHostController, destinoActual: NavDestin
 @Composable
 fun PantallaMediana(navController: NavHostController, destinoActual: NavDestination?) {
     Row {
-        NavigationRail(modifier = Modifier.padding(top = 4.dp)) {
+        NavigationRail {
             Spacer(Modifier.weight(1f))
 
             Destino.values().forEach { destino ->
