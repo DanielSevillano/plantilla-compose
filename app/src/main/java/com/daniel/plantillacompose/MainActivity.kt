@@ -36,9 +36,7 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val destinoActual = remember(navBackStackEntry) {
-                    navBackStackEntry?.destination
-                }
+                val destinoActual = remember(navBackStackEntry) { navBackStackEntry?.destination }
                 val dimensionesVentana = calculateWindowSizeClass(this)
 
                 Scaffold(
