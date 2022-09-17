@@ -54,13 +54,14 @@ android {
     }
 
     buildToolsVersion = "33.0.0"
+    namespace = "com.daniel.plantillacompose"
 }
 
 dependencies {
     val composeVersion = "1.2.1"
     val accompanistVersion = "0.25.1"
 
-    implementation("androidx.core:core-ktx:1.8.0")
+    implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.core:core-splashscreen:1.0.0")
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
