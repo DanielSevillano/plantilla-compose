@@ -4,7 +4,6 @@ Una plantilla para proyectos de Jetpack Compose. Incluye:
 * Material Design 3.
 * Color dinámico.
 * Tema y tipografía actualizados.
-* Soporte para tamaños grandes de pantalla.
 * Pantalla de presentación.
-* Navegación básica.
+* Navegación básica con animaciones.
 * Archivos Gradle migrados a Kotlin.
