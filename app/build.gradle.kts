@@ -59,7 +59,7 @@ android {
 
 dependencies {
     val composeVersion = "1.3.1"
-    val accompanistVersion = "0.27.1"
+    val accompanistVersion = "0.28.0"
 
     implementation("androidx.activity:activity-compose:1.6.1")
     implementation("androidx.compose.ui:ui:$composeVersion")
