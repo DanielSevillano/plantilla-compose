@@ -31,12 +31,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     buildFeatures {
@@ -44,7 +44,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.0"
     }
 
     packagingOptions {
@@ -58,7 +58,7 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.3.2"
+    val composeVersion = "1.3.3"
     val accompanistVersion = "0.28.0"
 
     implementation("androidx.activity:activity-compose:1.6.1")
