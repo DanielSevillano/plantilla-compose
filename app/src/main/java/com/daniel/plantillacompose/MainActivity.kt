@@ -3,6 +3,7 @@ package com.daniel.plantillacompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -68,14 +69,65 @@ class MainActivity : ComponentActivity() {
                             navController = navController,
                             startDestination = Destino.values().first().ruta
                         ) {
-                            Destino.values().forEach { destino ->
-                                composable(destino.ruta) {
-                                    Box(
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(text = stringResource(id = destino.nombreId))
+                            composable(
+                                route = Destino.Destino1.ruta,
+                                enterTransition = {
+                                    slideIntoContainer(AnimatedContentScope.SlideDirection.Right)
+                                },
+                                exitTransition = {
+                                    slideOutOfContainer(AnimatedContentScope.SlideDirection.Left)
+                                }
+                            ) {
+                                Box(
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(text = stringResource(id = Destino.Destino1.nombreId))
+                                }
+                            }
+
+                            composable(
+                                route = Destino.Destino2.ruta,
+                                enterTransition = {
+                                    when (initialState.destination.route) {
+                                        Destino.Destino1.ruta -> slideIntoContainer(
+                                            AnimatedContentScope.SlideDirection.Left
+                                        )
+                                        else -> slideIntoContainer(AnimatedContentScope.SlideDirection.Right)
                                     }
+                                },
+                                exitTransition = {
+                                    when (targetState.destination.route) {
+                                        Destino.Destino1.ruta -> slideOutOfContainer(
+                                            AnimatedContentScope.SlideDirection.Right
+                                        )
+                                        else -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Left)
+                                    }
+
+                                }
+                            ) {
+                                Box(
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(text = stringResource(id = Destino.Destino2.nombreId))
+                                }
+                            }
+
+                            composable(
+                                route = Destino.Destino3.ruta,
+                                enterTransition = {
+                                    slideIntoContainer(AnimatedContentScope.SlideDirection.Left)
+                                },
+                                exitTransition = {
+                                    slideOutOfContainer(AnimatedContentScope.SlideDirection.Right)
+                                }
+                            ) {
+                                Box(
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(text = stringResource(id = Destino.Destino3.nombreId))
                                 }
                             }
                         }
