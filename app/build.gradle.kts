@@ -44,7 +44,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion = "1.4.2"
     }
 
     packagingOptions {
@@ -53,7 +53,7 @@ android {
         }
     }
 
-    buildToolsVersion = "33.0.1"
+    buildToolsVersion = "33.0.2"
     namespace = "com.daniel.plantillacompose"
 }
 
