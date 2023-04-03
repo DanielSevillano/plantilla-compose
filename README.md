@@ -7,4 +7,5 @@ Una plantilla para proyectos de Jetpack Compose. Incluye:
 * Icono con tema.
 * Pantalla de presentación.
 * Navegación básica con animaciones.
+* Gesto atrás predictivo.
 * Archivos Gradle migrados a Kotlin.
