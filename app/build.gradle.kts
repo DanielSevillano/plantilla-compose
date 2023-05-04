@@ -44,7 +44,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.6"
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
 
     packaging {
@@ -58,7 +58,7 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.4.2"
+    val composeVersion = "1.4.3"
     val accompanistVersion = "0.30.1"
 
     implementation("androidx.activity:activity-compose:1.7.1")
