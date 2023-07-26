@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.PlantillaCompose" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Compose" parent="android:Theme.Material.Light.NoActionBar" />
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="postSplashScreenTheme">@style/Theme.PlantillaCompose</item>
+        <item name="postSplashScreenTheme">@style/Theme.Compose</item>
     </style>
 </resources>

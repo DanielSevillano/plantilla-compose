@@ -1,4 +1,4 @@
-package com.daniel.plantillacompose
+package com.daniel.compose
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -12,16 +12,28 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 enum class Destino(
     val ruta: String,
-    @StringRes val nombreId: Int,
+    @StringRes val nombre: Int,
     val icono: ImageVector,
     val iconoSeleccionado: ImageVector
 ) {
-    Destino1("destino1", R.string.destino1, Icons.Outlined.Home, Icons.Filled.Home),
-    Destino2("destino2", R.string.destino2, Icons.Outlined.CheckCircle, Icons.Filled.CheckCircle),
+    Destino1(
+        ruta = "destino1",
+        nombre = R.string.destino1,
+        icono = Icons.Outlined.Home,
+        iconoSeleccionado = Icons.Filled.Home
+    ),
+
+    Destino2(
+        ruta = "destino2",
+        nombre = R.string.destino2,
+        icono = Icons.Outlined.CheckCircle,
+        iconoSeleccionado = Icons.Filled.CheckCircle
+    ),
+
     Destino3(
-        "destino3",
-        R.string.destino3,
-        Icons.Outlined.AccountCircle,
-        Icons.Filled.AccountCircle
+        ruta = "destino3",
+        nombre = R.string.destino3,
+        icono = Icons.Outlined.AccountCircle,
+        iconoSeleccionado = Icons.Filled.AccountCircle
     )
 }

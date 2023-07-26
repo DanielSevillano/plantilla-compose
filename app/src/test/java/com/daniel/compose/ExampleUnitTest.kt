@@ -1,4 +1,4 @@
-package com.daniel.plantillacompose
+package com.daniel.compose
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
