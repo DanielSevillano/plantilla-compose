@@ -3,8 +3,7 @@ package com.daniel.compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.AnimatedContentScope
-import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,21 +20,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.daniel.compose.ui.theme.AppTheme
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
-                val navController = rememberAnimatedNavController()
+                val navController = rememberNavController()
 
                 Scaffold(
                     bottomBar = {
@@ -76,17 +74,17 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(paddingValues)
                     ) {
-                        AnimatedNavHost(
+                        NavHost(
                             navController = navController,
                             startDestination = Destino.entries.first().ruta
                         ) {
                             composable(
                                 route = Destino.Destino1.ruta,
                                 enterTransition = {
-                                    slideIntoContainer(AnimatedContentScope.SlideDirection.Right)
+                                    slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right)
                                 },
                                 exitTransition = {
-                                    slideOutOfContainer(AnimatedContentScope.SlideDirection.Left)
+                                    slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left)
                                 }
                             ) {
                                 Box(
@@ -102,19 +100,19 @@ class MainActivity : ComponentActivity() {
                                 enterTransition = {
                                     when (initialState.destination.route) {
                                         Destino.Destino1.ruta -> slideIntoContainer(
-                                            AnimatedContentScope.SlideDirection.Left
+                                            AnimatedContentTransitionScope.SlideDirection.Left
                                         )
 
-                                        else -> slideIntoContainer(AnimatedContentScope.SlideDirection.Right)
+                                        else -> slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right)
                                     }
                                 },
                                 exitTransition = {
                                     when (targetState.destination.route) {
                                         Destino.Destino1.ruta -> slideOutOfContainer(
-                                            AnimatedContentScope.SlideDirection.Right
+                                            AnimatedContentTransitionScope.SlideDirection.Right
                                         )
 
-                                        else -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Left)
+                                        else -> slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left)
                                     }
 
                                 }
@@ -130,10 +128,10 @@ class MainActivity : ComponentActivity() {
                             composable(
                                 route = Destino.Destino3.ruta,
                                 enterTransition = {
-                                    slideIntoContainer(AnimatedContentScope.SlideDirection.Left)
+                                    slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left)
                                 },
                                 exitTransition = {
-                                    slideOutOfContainer(AnimatedContentScope.SlideDirection.Right)
+                                    slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right)
                                 }
                             ) {
                                 Box(
