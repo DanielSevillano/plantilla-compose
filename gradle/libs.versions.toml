@@ -1,10 +1,10 @@
 [versions]
-activity = "1.9.0"
-agp = "8.5.0"
-compose-bom = "2024.06.00"
+activity = "1.9.2"
+agp = "8.7.0"
+compose-bom = "2024.09.03"
 core-splashscreen = "1.0.1"
-navigation = "2.7.7"
-kotlin = "2.0.0"
+navigation = "2.8.2"
+kotlin = "2.0.20"
 
 [libraries]
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
