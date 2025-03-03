@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -26,6 +25,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.daniel.compose.ui.theme.AppTheme
+import soup.compose.material.motion.animation.materialFadeThroughIn
+import soup.compose.material.motion.animation.materialFadeThroughOut
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,17 +80,11 @@ class MainActivity : ComponentActivity() {
                     ) {
                         NavHost(
                             navController = navController,
-                            startDestination = Destino.entries.first().ruta
+                            startDestination = Destino.entries.first().ruta,
+                            enterTransition = { materialFadeThroughIn() },
+                            exitTransition = { materialFadeThroughOut() }
                         ) {
-                            composable(
-                                route = Destino.Destino1.ruta,
-                                enterTransition = {
-                                    slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right)
-                                },
-                                exitTransition = {
-                                    slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left)
-                                }
-                            ) {
+                            composable(route = Destino.Destino1.ruta) {
                                 Box(
                                     modifier = Modifier.fillMaxSize(),
                                     contentAlignment = Alignment.Center
@@ -98,28 +93,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
 
-                            composable(
-                                route = Destino.Destino2.ruta,
-                                enterTransition = {
-                                    when (initialState.destination.route) {
-                                        Destino.Destino1.ruta -> slideIntoContainer(
-                                            AnimatedContentTransitionScope.SlideDirection.Left
-                                        )
-
-                                        else -> slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right)
-                                    }
-                                },
-                                exitTransition = {
-                                    when (targetState.destination.route) {
-                                        Destino.Destino1.ruta -> slideOutOfContainer(
-                                            AnimatedContentTransitionScope.SlideDirection.Right
-                                        )
-
-                                        else -> slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left)
-                                    }
-
-                                }
-                            ) {
+                            composable(route = Destino.Destino2.ruta) {
                                 Box(
                                     modifier = Modifier.fillMaxSize(),
                                     contentAlignment = Alignment.Center
@@ -128,15 +102,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
 
-                            composable(
-                                route = Destino.Destino3.ruta,
-                                enterTransition = {
-                                    slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left)
-                                },
-                                exitTransition = {
-                                    slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right)
-                                }
-                            ) {
+                            composable(route = Destino.Destino3.ruta) {
                                 Box(
                                     modifier = Modifier.fillMaxSize(),
                                     contentAlignment = Alignment.Center

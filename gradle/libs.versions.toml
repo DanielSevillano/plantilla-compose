@@ -4,6 +4,7 @@ agp = "8.8.2"
 compose-bom = "2025.02.00"
 core-splashscreen = "1.0.1"
 kotlin = "2.1.10"
+material-motion = "1.2.1"
 navigation = "2.8.8"
 
 [libraries]
@@ -12,6 +13,7 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
+material-motion-compose = { group = "io.github.fornewid", name = "material-motion-compose-core", version.ref = "material-motion" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
 [plugins]
