@@ -1,16 +1,17 @@
 [versions]
 activity = "1.10.1"
-agp = "8.10.1"
-compose-bom = "2025.06.00"
+agp = "8.12.1"
+compose-bom = "2025.08.00"
 core-splashscreen = "1.0.1"
-kotlin = "2.1.21"
-material-motion = "1.2.1"
-navigation = "2.9.0"
+kotlin = "2.2.10"
+material-motion = "2.0.1"
+navigation = "2.9.3"
 
 [libraries]
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.4.0-beta02" }
+compose-material-icons = { group = "androidx.compose.material", name = "material-icons-core" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
 material-motion-compose = { group = "io.github.fornewid", name = "material-motion-compose-core", version.ref = "material-motion" }
