@@ -7,23 +7,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.daniel.compose.ui.components.BarraNavegacion
+import com.daniel.compose.ui.navigation.Rutas
 import com.daniel.compose.ui.theme.AppTheme
 import soup.compose.material.motion.animation.materialFadeThroughIn
 import soup.compose.material.motion.animation.materialFadeThroughOut
@@ -31,7 +25,6 @@ import soup.compose.material.motion.animation.materialFadeThroughOut
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
@@ -41,36 +34,7 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     bottomBar = {
-                        NavigationBar {
-                            val navBackStackEntry by navController.currentBackStackEntryAsState()
-                            val destinoActual = navBackStackEntry?.destination
-
-                            Destino.entries.forEach { destino ->
-                                val destinoSeleccionado =
-                                    destinoActual?.hierarchy?.any { it.route == destino.ruta } == true
-
-                                NavigationBarItem(
-                                    selected = destinoSeleccionado,
-                                    onClick = {
-                                        if (!destinoSeleccionado) {
-                                            navController.navigate(destino.ruta) {
-                                                popUpTo(navController.graph.findStartDestination().id)
-                                                launchSingleTop = true
-                                            }
-                                        }
-                                    },
-                                    icon = {
-                                        Icon(
-                                            imageVector = if (destinoSeleccionado) destino.iconoSeleccionado else destino.icono,
-                                            contentDescription = stringResource(id = destino.nombre)
-                                        )
-                                    },
-                                    label = {
-                                        Text(text = stringResource(id = destino.nombre))
-                                    }
-                                )
-                            }
-                        }
+                        BarraNavegacion(navController = navController)
                     }
                 ) { paddingValues ->
                     Surface(
@@ -80,34 +44,34 @@ class MainActivity : ComponentActivity() {
                     ) {
                         NavHost(
                             navController = navController,
-                            startDestination = Destino.entries.first().ruta,
+                            startDestination = Rutas.Destino1,
                             enterTransition = { materialFadeThroughIn() },
                             exitTransition = { materialFadeThroughOut() }
                         ) {
-                            composable(route = Destino.Destino1.ruta) {
+                            composable<Rutas.Destino1> {
                                 Box(
                                     modifier = Modifier.fillMaxSize(),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    Text(text = stringResource(id = Destino.Destino1.nombre))
+                                    Text(text = "Destino 1")
                                 }
                             }
 
-                            composable(route = Destino.Destino2.ruta) {
+                            composable<Rutas.Destino2> {
                                 Box(
                                     modifier = Modifier.fillMaxSize(),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    Text(text = stringResource(id = Destino.Destino2.nombre))
+                                    Text(text = "Destino 2")
                                 }
                             }
 
-                            composable(route = Destino.Destino3.ruta) {
+                            composable<Rutas.Destino3> {
                                 Box(
                                     modifier = Modifier.fillMaxSize(),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    Text(text = stringResource(id = Destino.Destino3.nombre))
+                                    Text(text = "Destino 3")
                                 }
                             }
                         }

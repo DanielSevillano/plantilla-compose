@@ -1,7 +1,3 @@
 <resources>
     <string name="app_name">Compose</string>
-
-    <string name="destino1">Destino 1</string>
-    <string name="destino2">Destino 2</string>
-    <string name="destino3">Destino 3</string>
 </resources>
